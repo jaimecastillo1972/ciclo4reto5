@@ -142,9 +142,7 @@ public class UserService {
         return aBoolean;
     }
 
-    public List<User> findByBirthDay(String birthDay){
-        System.out.println(birthDay);
-        return repository.findByBirthtDay(birthDay);
-
+    public List<User> listBirthtDayMonth(String month){
+        return repository.listBirthtDayMonth(month);
     }
 }

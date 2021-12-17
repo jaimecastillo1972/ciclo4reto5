@@ -50,7 +50,9 @@ public interface UserCrudRepository extends MongoRepository<User, Integer> {
      */
     public List<User> findByIdOrEmailOrName(Integer id, String email, String name);
 
-    @Query("{'birthDay':?0}")
-    List<User> findByBirthtDay(Date birthtDay);
+//    @Query("{'birthDay':?0}")
+//    List<User> findByBirthtDay(Date birthtDay);
+
+    List<User> findByMonthBirthtDay(String month);
 
 }

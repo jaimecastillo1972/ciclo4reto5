@@ -86,9 +86,9 @@ public class UserRepository {
         return repository.findByEmailAndPassword(email, password);
     }
 
-//    public List<User> getByBirthtDay(String dateStr, Integer id){
-//        return repository.findByBirthtDay(birthtDay);
-//    }
+    public List<User> listBirthtDayMonth(String month){
+        return repository.findByMonthBirthtDay(month);
+    }
 
     /**
      * Guardar registro

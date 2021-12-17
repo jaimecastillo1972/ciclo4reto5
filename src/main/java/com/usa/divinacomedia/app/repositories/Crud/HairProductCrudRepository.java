@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface HairProductCrudRepository extends MongoRepository<HairProduct, String> {
 
-    @Query("{'description': ?0}")
-    List<HairProduct> findByDescription(String description);
+//    @Query("{'description': ?0}")
+//    List<HairProduct> findByDescription(String description);
+    @Query("{'description':{'$regex':'?0','$options':'i'}}")
+    public List<HairProduct> findByDescriptionLike(String description);
 
     @Query("{'price': ?0}")
     List<HairProduct> findByPrice(Double price);

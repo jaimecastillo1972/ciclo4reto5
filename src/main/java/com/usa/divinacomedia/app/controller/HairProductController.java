@@ -37,9 +37,9 @@ public class HairProductController {
 
 
 
-    @GetMapping("description/{description}")
-    public List<HairProduct> getByDescription(@PathVariable("description") String description){
-        return service.getByDescription(description);
+    @GetMapping("/description/{description}")
+    public List<HairProduct> findByDescriptionLike(@PathVariable("description") String description){
+        return service.findByDescriptionLike(description);
     }
 
     @GetMapping("price/{price}")

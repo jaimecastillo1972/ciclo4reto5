@@ -34,8 +34,8 @@ public class HairProductRepository {
         return repository.findById(reference);
     }
 
-    public List<HairProduct> findByDescription(String description){
-        return repository.findByDescription(description);
+    public List<HairProduct> findByDescriptionLike(String description) {
+        return repository.findByDescriptionLike(description);
     }
 
     public List<HairProduct> findByPrice(Double price){
