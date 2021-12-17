@@ -1,8 +1,11 @@
 package com.usa.divinacomedia.app.repositories.Crud;
 
+import com.usa.divinacomedia.app.model.Order;
 import com.usa.divinacomedia.app.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,5 +49,8 @@ public interface UserCrudRepository extends MongoRepository<User, Integer> {
      * @return
      */
     public List<User> findByIdOrEmailOrName(Integer id, String email, String name);
+
+    @Query("{'birthDay':?0}")
+    List<User> findByBirthtDay(Date birthtDay);
 
 }

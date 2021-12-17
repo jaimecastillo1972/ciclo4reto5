@@ -3,6 +3,8 @@ package com.usa.divinacomedia.app.controller;
 
 import com.usa.divinacomedia.app.model.User;
 import com.usa.divinacomedia.app.services.UserService;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,11 @@ public class UserController {
     @GetMapping("/{id}")
     public Optional<User> getUser(@PathVariable("id") Integer id){
         return service.getUserById(id);
+    }
+
+    @GetMapping("birthday/{birthDay}")
+    public List<User> getByBirthtDay(@PathVariable("birthDay") String  birthtDay){
+        return service.findByBirthDay(birthtDay);
     }
 
     /**

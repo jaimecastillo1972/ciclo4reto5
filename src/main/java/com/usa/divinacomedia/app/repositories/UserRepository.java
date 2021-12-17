@@ -1,11 +1,18 @@
 package com.usa.divinacomedia.app.repositories;
 
 
+import com.usa.divinacomedia.app.model.Order;
 import com.usa.divinacomedia.app.model.User;
 import com.usa.divinacomedia.app.repositories.Crud.UserCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +26,9 @@ public class UserRepository {
      */
     @Autowired
     private UserCrudRepository repository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     /**
      * Obtener registro
@@ -76,6 +86,10 @@ public class UserRepository {
         return repository.findByEmailAndPassword(email, password);
     }
 
+//    public List<User> getByBirthtDay(String dateStr, Integer id){
+//        return repository.findByBirthtDay(birthtDay);
+//    }
+
     /**
      * Guardar registro
      * @param user
@@ -98,6 +112,17 @@ public class UserRepository {
      */
     public List<User> getUserByIdOrEmailOrName(Integer id, String email, String name){
         return repository.findByIdOrEmailOrName(id,email,name);
+    }
+
+    public List<User> findByBirthtDay(String birthDay) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Query query = new Query();
+        Criteria dateCriteria = Criteria.where("birthDay")
+                .lte(LocalDate.parse(birthDay, dtf).minusDays(1).atStartOfDay())
+                .gte(LocalDate.parse(birthDay, dtf).plusDays(30).atStartOfDay());
+        query.addCriteria(dateCriteria);
+        List<User> user = mongoTemplate.find(query,User.class);
+        return user;
     }
 
 }

@@ -35,9 +35,16 @@ public class HairProductController {
         return service.getProductById(id);
     }
 
+
+
     @GetMapping("description/{description}")
-    public Optional<HairProduct> getProductByDescription(@PathVariable("decription") String description){
-        return service.getProductById(description);
+    public List<HairProduct> getByDescription(@PathVariable("description") String description){
+        return service.getByDescription(description);
+    }
+
+    @GetMapping("price/{price}")
+    public List<HairProduct> getByDescription(@PathVariable("price") Double price){
+        return service.getByPrice(price);
     }
 
     /**

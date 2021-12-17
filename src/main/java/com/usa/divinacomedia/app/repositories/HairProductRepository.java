@@ -1,6 +1,7 @@
 package com.usa.divinacomedia.app.repositories;
 
 import com.usa.divinacomedia.app.model.HairProduct;
+import com.usa.divinacomedia.app.model.Order;
 import com.usa.divinacomedia.app.repositories.Crud.HairProductCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,14 @@ public class HairProductRepository {
      */
     public Optional<HairProduct> getProductById(String reference){
         return repository.findById(reference);
+    }
+
+    public List<HairProduct> findByDescription(String description){
+        return repository.findByDescription(description);
+    }
+
+    public List<HairProduct> findByPrice(Double price){
+        return repository.findByPrice(price);
     }
 
     /**

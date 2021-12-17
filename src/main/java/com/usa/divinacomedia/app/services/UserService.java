@@ -5,6 +5,7 @@ import com.usa.divinacomedia.app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -139,5 +140,11 @@ public class UserService {
             return true;
         }).orElse(false);
         return aBoolean;
+    }
+
+    public List<User> findByBirthDay(String birthDay){
+        System.out.println(birthDay);
+        return repository.findByBirthtDay(birthDay);
+
     }
 }
